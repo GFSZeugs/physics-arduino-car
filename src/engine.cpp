@@ -3,9 +3,6 @@
 #include "utility.h"
 
 Engine::Engine(int pwmPin, int dirPin) {
-    pinMode(pwmPin, OUTPUT);
-    pinMode(dirPin, OUTPUT);
-
     this->pwmPin = pwmPin;
     this->dirPin = dirPin;
 
