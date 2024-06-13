@@ -5,7 +5,7 @@
 // Engine *e;
 
 void setup() {
-	pinMode(5, OUTPUT);
+	pinMode(PD5, OUTPUT);
 	// pinMode(DIR_PIN, OUTPUT);
 
 	// e = new Engine{PWM_PIN, DIR_PIN};
@@ -15,8 +15,8 @@ void setup() {
 }
 
 void loop() {
-	analogWrite(5, 160);
+	analogWrite(PD5, 160);
 	delay(10000);
-	analogWrite(5, 0);
+	analogWrite(PD5, 0);
 	delay(60000);
 }
