@@ -9,9 +9,10 @@ void setup() {
 	pinMode(DIR_PIN, OUTPUT);
 
 	e = new Engine{PWM_PIN, DIR_PIN};
-	(*e).kickstart(150);
-	delay(5000);
-	(*e).setThrust(0);
+	// (*e).kickstart(150);
+	// delay(2500);
+	(*e).setThrust(170);
+	delay(10000);
 }
 
 void loop() {
