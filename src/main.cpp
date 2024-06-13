@@ -11,7 +11,8 @@ void setup() {
 	e = new Engine{PWM_PIN, DIR_PIN};
 	// (*e).kickstart(150);
 	// delay(2500);
-	(*e).setThrust(170);
+	// (*e).setThrust(170);
+	analogWrite(PWM_PIN, 190);
 	delay(10000);
 }
 
