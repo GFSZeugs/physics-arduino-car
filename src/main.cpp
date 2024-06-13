@@ -15,7 +15,7 @@ void setup() {
 }
 
 void loop() {
-	analogWrite(PWM_PIN, 190);
+	analogWrite(PWM_PIN, 200);
 	delay(10000);
 	analogWrite(PWM_PIN, 0);
 	delay(60000);
