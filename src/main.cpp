@@ -1,30 +1,18 @@
 #include <Arduino.h>
 #include "engine.h"
+#include "constants.h"
 
-Engine *e;
-
-const int pwmPin = 3;
-const int dirPin = 5;
-
-int direction = 0;
+Engine e;
 
 void setup() {
-	// pinMode(pwmPin, OUTPUT);
-	// pinMode(dirPin, OUTPUT);
+	pinMode(PWM_PIN, OUTPUT);
+	pinMode(DIR_PIN, OUTPUT);
 
-	// e = new Engine(pwmPin, dirPin);
+	e = Engine{PWM_PIN, DIR_PIN};
+	e.kickstart(150);
+	delay(5000);
+	e.setThrust(0);
 }
 
 void loop() {
-	printf("Hola \n");
-	delay(1000);
-	// for (float thrust = 0.1; thrust < 1.0; thrust += 0.1) {
-	// 	(*e).setThrust(thrust);
-	// 	delay(1000);
-	// }
-
-	// digitalWrite(pwmPin, 0);
-	// delay(5000);
-	// direction = direction == 0 ? 1 : 0;
-	// digitalWrite(dirPin, direction);
 }

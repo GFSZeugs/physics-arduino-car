@@ -7,14 +7,16 @@ struct Engine {
         int pwmPin;
         int dirPin;
     
-        float thrust;
+        int thrust;
         Direction dir;
         
     public:
         Engine(int, int);
 
-        float getThrust();
-        void setThrust(float);
+        int getThrust();
+        void setThrust(int);
+
+        void kickstart(int);
 
         Direction getDirection();
         void setDirection(Direction);

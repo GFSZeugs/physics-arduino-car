@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include "constants.h"
 #include "engine.h"
 #include "utility.h"
 
@@ -6,17 +7,22 @@ Engine::Engine(int pwmPin, int dirPin) {
     this->pwmPin = pwmPin;
     this->dirPin = dirPin;
 
-    this->thrust = 0.0f;
+    this->thrust = 0;
     this->dir = FORWARD;
 }
 
-float Engine::getThrust() {
+int Engine::getThrust() {
     return this->thrust;
 }
 
-void Engine::setThrust(float thrust) {
-    this->thrust = clamp(thrust, 0.0f, 1.0f);
-    analogWrite(this->pwmPin, (int) thrust * 255);
+void Engine::setThrust(int thrust) {
+    analogWrite(this->pwmPin, thrust);
+}
+
+void Engine::kickstart(int thrustAfter) {
+    analogWrite(this->pwmPin, KICKSTART_PWM_MOD);
+    delay(KICKSTART_DELAY);
+    analogWrite(this->pwmPin, thrustAfter);
 }
 
 Direction Engine::getDirection() {
