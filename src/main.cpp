@@ -12,9 +12,11 @@ void setup() {
 	// (*e).kickstart(150);
 	// delay(2500);
 	// (*e).setThrust(170);
-	analogWrite(PWM_PIN, 190);
-	delay(10000);
 }
 
 void loop() {
+	analogWrite(PWM_PIN, 190);
+	delay(10000);
+	analogWrite(PWM_PIN, 0);
+	delay(60000);
 }
