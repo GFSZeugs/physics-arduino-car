@@ -2,10 +2,10 @@
 #include "engine.h"
 #include "constants.h"
 
-Engine *e;
+// Engine *e;
 
 void setup() {
-	pinMode(PWM_PIN, OUTPUT);
+	pinMode(5, OUTPUT);
 	// pinMode(DIR_PIN, OUTPUT);
 
 	// e = new Engine{PWM_PIN, DIR_PIN};
@@ -15,8 +15,8 @@ void setup() {
 }
 
 void loop() {
-	analogWrite(PWM_PIN, 160);
+	analogWrite(5, 160);
 	delay(10000);
-	analogWrite(PWM_PIN, 0);
+	analogWrite(5, 0);
 	delay(60000);
 }
