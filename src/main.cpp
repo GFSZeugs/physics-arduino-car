@@ -26,7 +26,7 @@ void taster_isr() {
 
 void setup() {
 	pinMode(PWM_PIN, OUTPUT);
-	pinMode(LENKUNG_PIN, OUTPUT);
+	// pinMode(LENKUNG_PIN, OUTPUT);
 	pinMode(TASTER_PIN, INPUT_PULLUP);
 	attachInterrupt(digitalPinToInterrupt(TASTER_PIN), taster_isr, FALLING);
 	
