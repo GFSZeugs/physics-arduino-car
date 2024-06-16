@@ -69,7 +69,7 @@ void loop() {
 
 	for (int i = 0; i < 30; i += 5) {
 		lenkung.write(RECHTS + i);
-		delay(250);
+		delay(750);
 	}
 
 	delay(1000);
