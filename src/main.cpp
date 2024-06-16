@@ -6,7 +6,7 @@ volatile bool active = false;
 int timeSinceISR = 0;
 
 enum Lenkrichtung {
-	GERADE = 87,
+	GERADE = 85,
 	LINKS = 130,
 	RECHTS = 40
 };
