@@ -43,17 +43,19 @@ void loop() {
 
 	delay(500);
 	// Warmup motor
-	for (int i = 210; i < 240; i++) {
-		if (!active) { goto cleanup; }
-		Serial.println(i);
-		analogWrite(PWM_PIN, i);
-		delay(750);
-	}
+	// for (int i = 210; i < 240; i++) {
+	// 	if (!active) { goto cleanup; }
+	// 	Serial.println(i);
+	// 	analogWrite(PWM_PIN, i);
+	// 	delay(750);
+	// }
+
+	analogWrite(PWM_PIN, 220);
 
 	lenkung.write(RECHTS);
 
 	// Drive for
-	for (int i = 0; i < 1000; i++) {
+	for (int i = 0; i < 10000; i++) {
 		if (!active) { goto cleanup; }
 		delay(1);
 	}
