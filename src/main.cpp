@@ -36,7 +36,7 @@ void setup() {
 
 int warmupMotor(int target) {
 	// Warmup motor
-	for (int i = 205; i < target; i++) {
+	for (int i = 200; i < target; i++) {
 		if (!active) { return -1; }
 		Serial.println(i);
 		analogWrite(PWM_PIN, i);
@@ -53,11 +53,7 @@ void loop() {
 
 	digitalWrite(PWM_PIN, HIGH);
 
-	delay(1000);
-	
-	digitalWrite(PWM_PIN, LOW);
-	
-	delay(1000);
+	delay(500);
 
 	if (warmupMotor(220) == -1) {
 		goto cleanup;
@@ -66,8 +62,6 @@ void loop() {
 	delay(3000);
 
 	lenkung.write(RECHTS);
-
-	delay(1000);
 
 	if (warmupMotor(220) == -1) {
 		goto cleanup;
