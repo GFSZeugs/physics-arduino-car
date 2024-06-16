@@ -34,6 +34,18 @@ void setup() {
 	Serial.begin(9600);
 }
 
+int warmupMotor(int target) {
+	// Warmup motor
+	for (int i = 210; i < target; i++) {
+		if (!active) { return -1; }
+		Serial.println(i);
+		analogWrite(PWM_PIN, i);
+		delay(750);
+	}
+
+	return 0;
+}
+
 void loop() {
 	while (!active) { 
 		Serial.println("Nothing");
@@ -42,23 +54,27 @@ void loop() {
 	digitalWrite(PWM_PIN, HIGH);
 
 	delay(500);
-	// Warmup motor
-	// for (int i = 210; i < 240; i++) {
-	// 	if (!active) { goto cleanup; }
-	// 	Serial.println(i);
-	// 	analogWrite(PWM_PIN, i);
-	// 	delay(750);
-	// }
+	
+	if (warmupMotor(220) == -1) {
+		goto cleanup;
+	}
 
-	analogWrite(PWM_PIN, 220);
+	delay(3000);
 
 	lenkung.write(RECHTS);
 
-	// Drive for
-	for (int i = 0; i < 10000; i++) {
-		if (!active) { goto cleanup; }
-		delay(1);
+	delay(1000);
+
+	if (warmupMotor(220) == -1) {
+		goto cleanup;
 	}
+
+	for (int i = 0; i < 30; i += 5) {
+		lenkung.write(RECHTS + i);
+		delay(250);
+	}
+
+	delay(1000);
 
 	lenkung.write(GERADE);
 
