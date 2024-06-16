@@ -35,9 +35,6 @@ void setup() {
 }
 
 void loop() {
-	lenkung.write(RECHTS + 20);
-	delay(2000);
-	return;
 	while (!active) { 
 		Serial.println("Nothing");
 	}
