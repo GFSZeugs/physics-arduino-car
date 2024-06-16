@@ -12,6 +12,7 @@ enum Lenkrichtung {
 };
 
 Servo lenkung;
+Servo motor;
 
 void taster_isr() {
 	int currentTime = millis();
@@ -25,26 +26,19 @@ void taster_isr() {
 
 void setup() {
 	pinMode(PWM_PIN, OUTPUT);
+	pinMode(LENKUNG_PIN, OUTPUT);
 	pinMode(TASTER_PIN, INPUT_PULLUP);
-
 	attachInterrupt(digitalPinToInterrupt(TASTER_PIN), taster_isr, FALLING);
+	
+	Serial.begin(9600);
+
+	motor.attach(PWM_PIN);
+	motor.writeMicroseconds(2000);
+	delay(100);
+	motor.writeMicroseconds(1500);
 
 	lenkung.attach(LENKUNG_PIN);
 	lenkung.write(GERADE);
-
-	Serial.begin(9600);
-}
-
-int warmupMotor(int target) {
-	// Warmup motor
-	for (int i = 200; i < target; i++) {
-		if (!active) { return -1; }
-		Serial.println(i);
-		analogWrite(PWM_PIN, i);
-		delay(750);
-	}
-
-	return 0;
 }
 
 void loop() {
@@ -52,25 +46,16 @@ void loop() {
 		Serial.println("Nothing");
 	}
 
-	digitalWrite(PWM_PIN, HIGH);
+	motor.writeMicroseconds(1500);
 
-	delay(500);
-
-	if (warmupMotor(220) == -1) {
-		goto cleanup;
+	for (int i = 0; i < 300; i++) {
+		if (!active) goto cleanup;
+		delay(10);
 	}
-
-	delay(3000);
-
-	if (warmupMotor(220) == -1) {
-		goto cleanup;
-	}
-
-	delay(1000);
 
 cleanup:
-	Serial.println("GME auf 3000");
+	Serial.println("cleanup");
 	active = false;
-	analogWrite(PWM_PIN, 0);
+	motor.writeMicroseconds(0);
 	delay(3000);
 }
