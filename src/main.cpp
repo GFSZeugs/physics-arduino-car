@@ -46,7 +46,7 @@ void loop() {
 		Serial.println("Nothing");
 	}
 
-	motor.writeMicroseconds(1500);
+	motor.writeMicroseconds(1800);
 
 	for (int i = 0; i < 300; i++) {
 		if (!active) goto cleanup;
