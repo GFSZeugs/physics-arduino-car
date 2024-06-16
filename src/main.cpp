@@ -47,18 +47,13 @@ void loop() {
 	}
 
 	motor.writeMicroseconds(1600);
-	for (int i = 0; i < 100; i++) {
-		if (!active) goto cleanup;
-		delay(10);
-	}
+	delay(1000);
+	if (!active) goto cleanup;
 
 	motor.writeMicroseconds(0);
-
 	lenkung.write(LINKS);
-	for (int i = 0; i < 100; i++) {
-		if (!active) goto cleanup;
-		delay(10);
-	}
+	delay(1000);
+	if (!active) goto cleanup;
 
 	motor.writeMicroseconds(1600);
 	for (int i = 0; i < 200; i++) {
@@ -68,17 +63,8 @@ void loop() {
 
 	motor.writeMicroseconds(0);
 	lenkung.write(GERADE);
-	for (int i = 0; i < 100; i++) {
-		if (!active) goto cleanup;
-		delay(10);
-	}
-
-	motor.writeMicroseconds(1600);
-	for (int i = 0; i < 100; i++) {
-		if (!active) goto cleanup;
-		delay(10);
-	}
-
+	delay(1000);
+	if (!active) goto cleanup;
 
 cleanup:
 	Serial.println("cleanup");
