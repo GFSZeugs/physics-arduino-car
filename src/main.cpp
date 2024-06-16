@@ -30,6 +30,7 @@ void setup() {
 	attachInterrupt(digitalPinToInterrupt(TASTER_PIN), taster_isr, FALLING);
 
 	lenkung.attach(LENKUNG_PIN);
+	lenkung.write(GERADE);
 
 	Serial.begin(9600);
 }
@@ -59,24 +60,13 @@ void loop() {
 		goto cleanup;
 	}
 
-	for (int i = 220; i > 5; i--) {
-		if (!active) { goto cleanup; }
-		Serial.println(i);
-		analogWrite(PWM_PIN, i);
-		delay(750);
-	}
-
 	delay(3000);
-
-	lenkung.write(RECHTS);
 
 	if (warmupMotor(220) == -1) {
 		goto cleanup;
 	}
 
 	delay(1000);
-
-	lenkung.write(GERADE);
 
 cleanup:
 	Serial.println("GME auf 3000");
