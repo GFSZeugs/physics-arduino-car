@@ -67,11 +67,6 @@ void loop() {
 		goto cleanup;
 	}
 
-	for (int i = 0; i < 30; i += 5) {
-		lenkung.write(RECHTS + i);
-		delay(750);
-	}
-
 	delay(1000);
 
 	lenkung.write(GERADE);
