@@ -41,7 +41,7 @@ void loop() {
 
 	delay(500);
 	// Warmup motor
-	for (int i = 240; i < 255; i++) {
+	for (int i = 200; i < 240; i++) {
 		if (!active) { goto cleanup; }
 		Serial.println(i);
 		analogWrite(PWM_PIN, i);
