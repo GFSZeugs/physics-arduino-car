@@ -6,7 +6,7 @@ volatile bool active = false;
 int timeSinceISR = 0;
 
 enum Lenkrichtung {
-	GERADE = 80,
+	GERADE = 90,
 	LINKS = 130,
 	RECHTS = 40
 };
@@ -47,13 +47,17 @@ void loop() {
 	}
 
 	motor.writeMicroseconds(1600);
-	delay(1000);
-	if (!active) goto cleanup;
+	for (int i = 0; i < 100; i++) {
+		if (!active) goto cleanup;
+		delay(10);
+	}
 
 	motor.writeMicroseconds(0);
 	lenkung.write(LINKS);
-	delay(1000);
-	if (!active) goto cleanup;
+	for (int i = 0; i < 100; i++) {
+		if (!active) goto cleanup;
+		delay(10);
+	}
 
 	motor.writeMicroseconds(1600);
 	for (int i = 0; i < 200; i++) {
@@ -63,8 +67,10 @@ void loop() {
 
 	motor.writeMicroseconds(0);
 	lenkung.write(GERADE);
-	delay(1000);
-	if (!active) goto cleanup;
+	for (int i = 0; i < 100; i++) {
+		if (!active) goto cleanup;
+		delay(10);
+	}
 
 cleanup:
 	Serial.println("cleanup");
